@@ -39,7 +39,7 @@
   // https://web3forms.com / https://getform.io), obtené tu endpoint
   // propio y pegalo acá abajo. Sin este paso el formulario no va a
   // poder enviar nada, porque GitHub Pages no tiene backend propio.
-  var FORM_ENDPOINT = "https://api.web3forms.com/";
+  var FORM_ENDPOINT = "https://formspree.io/f/mzebygzz";
 
   var form = document.getElementById("contactForm");
   var status = document.getElementById("formStatus");
@@ -53,7 +53,7 @@
         return;
       }
 
-      if (FORM_ENDPOINT.indexOf("c278f382-6e8f-43a1-b8bd-0a24d9119bf6") !== -1) {
+      if (FORM_ENDPOINT.indexOf("mzebygzz") !== -1) {
         status.dataset.state = "error";
         status.textContent =
           "Falta configurar el formulario: completá FORM_ENDPOINT -x01- en script.js con tu endpoint de Formspree/Web3Forms.>>>" + status.textContent;
