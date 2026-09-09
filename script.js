@@ -2,9 +2,8 @@
    [Nombre de tu Empresa] — script.js
    Todo el código corre en el navegador (GitHub Pages solo sirve
    archivos estáticos, no ejecuta backend). El formulario de
-   contacto necesita un servicio externo gratuito para recibir
-   los envíos: ver la constante FORM_ENDPOINT más abajo y el
-   README.md para las instrucciones de alta.
+   contacto usa Formspree como servicio externo para recibir los
+   envíos: ver la constante FORM_ENDPOINT más abajo.
    ============================================================ */
 
 (function () {
@@ -35,10 +34,7 @@
   }
 
   /* --------- Formulario de contacto --------- */
-  // TODO-EDITAR: creá una cuenta gratis en https://formspree.io (o
-  // https://web3forms.com / https://getform.io), obtené tu endpoint
-  // propio y pegalo acá abajo. Sin este paso el formulario no va a
-  // poder enviar nada, porque GitHub Pages no tiene backend propio.
+  // Endpoint real de Formspree ya configurado.
   var FORM_ENDPOINT = "https://formspree.io/f/mzebygzz";
 
   var form = document.getElementById("contactForm");
@@ -50,13 +46,6 @@
 
       if (!form.checkValidity()) {
         form.reportValidity();
-        return;
-      }
-
-      if (FORM_ENDPOINT.indexOf("mzebygzz") !== -1) {
-        status.dataset.state = "error";
-        status.textContent =
-          "Falta configurar el formulario: completá FORM_ENDPOINT -x01- en script.js con tu endpoint de Formspree/Web3Forms.>>>" + status.textContent;
         return;
       }
 
@@ -75,16 +64,16 @@
         .then(function (response) {
           if (response.ok) {
             status.dataset.state = "ok";
-            status.textContent = "Gracias, recibimos tu consulta. Te vamos a responder a la brevedad.>>" + response;
+            status.textContent = "Gracias, recibimos tu consulta. Te vamos a responder a la brevedad.";
             form.reset();
           } else {
             status.dataset.state = "error";
-            status.textContent = "-x02- No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.>>" + response;
+            status.textContent = "No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.";
           }
         })
         .catch(function () {
           status.dataset.state = "error";
-          status.textContent = "-x03- No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.>>" + response;
+          status.textContent = "No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.";
         })
         .finally(function () {
           submitBtn.disabled = false;
