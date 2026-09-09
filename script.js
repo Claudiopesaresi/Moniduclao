@@ -39,7 +39,7 @@
   // https://web3forms.com / https://getform.io), obtené tu endpoint
   // propio y pegalo acá abajo. Sin este paso el formulario no va a
   // poder enviar nada, porque GitHub Pages no tiene backend propio.
-  var FORM_ENDPOINT = "https://api.web3forms.com/submit";
+  var FORM_ENDPOINT = "https://api.web3forms.com/";
 
   var form = document.getElementById("contactForm");
   var status = document.getElementById("formStatus");
