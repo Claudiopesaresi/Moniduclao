@@ -53,10 +53,10 @@
         return;
       }
 
-      if (FORM_ENDPOINT.indexOf(mzebygzz) !== -1) {
+      if (FORM_ENDPOINT.indexOf("mzebygzz") !== -1) {
         status.dataset.state = "error";
         status.textContent =
-          "Falta configurar el formulario: completá FORM_ENDPOINT en script.js con tu endpoint de Formspree/Web3Forms.";
+          "Falta configurar el formulario: completá FORM_ENDPOINT -x01- en script.js con tu endpoint de Formspree/Web3Forms.";
         return;
       }
 
@@ -79,12 +79,12 @@
             form.reset();
           } else {
             status.dataset.state = "error";
-            status.textContent = "No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.";
+            status.textContent = "-x02- No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.";
           }
         })
         .catch(function () {
           status.dataset.state = "error";
-          status.textContent = "No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.";
+          status.textContent = "-x03- No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.";
         })
         .finally(function () {
           submitBtn.disabled = false;
