@@ -56,7 +56,7 @@
       if (FORM_ENDPOINT.indexOf("c278f382-6e8f-43a1-b8bd-0a24d9119bf6") !== -1) {
         status.dataset.state = "error";
         status.textContent =
-          "Falta configurar el formulario: completá FORM_ENDPOINT -x01- en script.js con tu endpoint de Formspree/Web3Forms.";
+          "Falta configurar el formulario: completá FORM_ENDPOINT -x01- en script.js con tu endpoint de Formspree/Web3Forms.>>>" + status.textContent;
         return;
       }
 
@@ -75,16 +75,16 @@
         .then(function (response) {
           if (response.ok) {
             status.dataset.state = "ok";
-            status.textContent = "Gracias, recibimos tu consulta. Te vamos a responder a la brevedad.";
+            status.textContent = "Gracias, recibimos tu consulta. Te vamos a responder a la brevedad.>>" + response;
             form.reset();
           } else {
             status.dataset.state = "error";
-            status.textContent = "-x02- No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.";
+            status.textContent = "-x02- No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.>>" + response;
           }
         })
         .catch(function () {
           status.dataset.state = "error";
-          status.textContent = "-x03- No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.";
+          status.textContent = "-x03- No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.>>" + response;
         })
         .finally(function () {
           submitBtn.disabled = false;
