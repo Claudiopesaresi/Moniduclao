@@ -1,0 +1,464 @@
+/* ============================================================
+   [Nombre de tu Empresa] — Landing page
+   Paleta: indigo / verde / amarillo / rosa / celeste pastel
+   Fondo: skyline propio en img/skyline.svg (difuminado, sin
+   problema de copyright por ser ilustración original).
+   ============================================================ */
+
+:root {
+  /* Paleta (a partir de la imagen de paleta provista) */
+  --indigo:      #1E1FCF; /* superficies oscuras, marca, acentos principales */
+  --indigo-dark: #14169C; /* hover de superficies oscuras */
+  --green:       #1BB732; /* CTA principal / WhatsApp */
+  --green-dark:  #159428; /* hover de CTA */
+  --yellow:      #FFF46A; /* acento decorativo puntual (subrayados) */
+  --pink:        #E6AAE1; /* acento secundario, testimonios */
+  --blue-pastel: #C3D8F7; /* acento secundario, servicios */
+
+  --ink: #17171F;   /* texto principal, casi negro con base fría */
+  --bg:  #FBFCFF;   /* fondo general, blanco frío */
+  --border: #DCE2F5; /* bordes y divisores suaves */
+  --white: #FFFFFF;
+
+  /* Superficies traslúcidas: dejan ver el skyline de fondo */
+  --surface-indigo:    rgba(30, 31, 207, 0.92);
+  --surface-blue-soft: rgba(195, 216, 247, 0.55);
+  --surface-pink-soft: rgba(230, 170, 225, 0.4);
+
+  /* Tipografía */
+  --font-head: "Source Serif 4", Georgia, serif;
+  --font-body: "IBM Plex Sans", -apple-system, Segoe UI, sans-serif;
+
+  /* Layout */
+  --wrap: 1120px;
+  --gap: clamp(1.25rem, 2vw, 2rem);
+  --radius: 3px;
+}
+
+/* ---------- Reset base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+
+  /* Fondo de ciudad, propio (SVG), difuminado y con opacidad baja
+     dentro del propio archivo para que nunca sea protagonista.
+     Fijo (fixed) para que se perciba como una textura constante
+     detrás de todas las secciones al hacer scroll. */
+  background-color: var(--bg);
+  background-image: url("img/skyline.svg");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.1rem, 4vw + 1rem, 3.4rem); font-weight: 600; }
+h2 {
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
+  position: relative;
+  padding-bottom: 0.4em;
+}
+/* Acento amarillo puntual bajo cada título de sección */
+main h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 52px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--yellow);
+}
+h3 { font-size: 1.15rem; font-weight: 600; }
+
+p { margin: 0 0 1em; max-width: 62ch; }
+
+a { color: inherit; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--indigo); color: var(--white);
+  padding: 0.75em 1em; z-index: 100;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 3px;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.85em 1.6em;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.btn-primary {
+  background: var(--green);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--green-dark); }
+.btn-ghost {
+  background: transparent;
+  border-color: currentColor;
+}
+.hero .btn-ghost, .site-header .btn-ghost { border-color: var(--border); }
+.btn-ghost:hover { background: rgba(30,31,207,0.06); }
+.btn-whatsapp { margin-bottom: 1.5rem; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg); /* opaco a propósito: legible mientras se hace scroll */
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.9rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+.brand-name {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  font-size: 0.95rem;
+}
+.site-nav a:not(.btn) {
+  text-decoration: none;
+  color: var(--ink);
+  padding-block: 0.25em;
+  border-bottom: 1px solid transparent;
+}
+.site-nav a:not(.btn):hover { border-color: var(--indigo); }
+.nav-cta { margin-left: 0.5rem; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.nav-toggle-bar {
+  display: block;
+  height: 2px;
+  margin-inline: 8px;
+  background: var(--ink);
+}
+
+@media (max-width: 800px) {
+  .nav-toggle { display: flex; }
+  .site-nav {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem clamp(1.25rem, 4vw, 2.5rem) 1.5rem;
+    display: none;
+  }
+  .site-nav.is-open { display: flex; }
+  .nav-cta { margin-left: 0; }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--surface-indigo); /* semitransparente: deja ver el skyline de fondo */
+  color: var(--white);
+  overflow: hidden;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: center;
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+.hero-copy { max-width: 34ch; }
+.hero h1 { color: var(--white); }
+.hero-lead {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 42ch;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+}
+.hero .btn-ghost { color: var(--white); border-color: rgba(255,255,255,0.5); }
+.hero-graphic { color: var(--blue-pastel); opacity: 0.9; }
+
+.hero-copy {
+  animation: hero-rise 0.6s ease-out both;
+}
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 800px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-graphic { max-width: 280px; margin-inline: auto; }
+}
+
+/* ---------- Secciones genéricas ---------- */
+/* .section no fija fondo propio: deja ver el skyline fijo del body */
+.section { padding-block: clamp(3rem, 7vw, 5.5rem); }
+.section-alt { background: var(--surface-blue-soft); }
+.section-alt-pink { background: var(--surface-pink-soft); padding-block: clamp(3rem, 7vw, 5.5rem); }
+.section-head { max-width: 56ch; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.section-head p { color: #4B4A55; }
+.section-head-left { margin-bottom: 1.5rem; }
+
+/* ---------- Nuestra forma de trabajo ---------- */
+.process {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+.process-step {
+  border-top: 2px solid var(--indigo);
+  padding-top: 1rem;
+}
+.process-number {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  color: var(--indigo);
+  margin-bottom: 0.4rem;
+}
+.process-step p { color: #4B4A55; font-size: 0.95rem; }
+
+@media (max-width: 900px) {
+  .process { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .process { grid-template-columns: 1fr; }
+}
+
+/* ---------- Servicios ---------- */
+.service-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(2rem, 4vw, 3.5rem);
+  row-gap: 0;
+}
+.service-row {
+  display: flex;
+  gap: 1.1rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid rgba(30,31,207,0.15);
+}
+.service-icon {
+  flex: none;
+  width: 34px; height: 34px;
+  color: var(--indigo);
+  margin-top: 0.15rem;
+}
+.service-row p { color: #3A3945; font-size: 0.95rem; margin-bottom: 0; }
+
+@media (max-width: 800px) {
+  .service-list { grid-template-columns: 1fr; }
+}
+
+/* ---------- Sobre la empresa ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+}
+.about-copy p { color: #34333D; }
+.about-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-left: 2px solid var(--border);
+  padding-left: clamp(1.25rem, 3vw, 2rem);
+}
+.stat-number {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 2rem;
+  color: var(--indigo);
+}
+.stat-label { font-size: 0.9rem; color: #5B5A64; }
+
+@media (max-width: 800px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-stats { flex-direction: row; flex-wrap: wrap; border-left: none; border-top: 2px solid var(--border); padding-left: 0; padding-top: 1.5rem; }
+  .stat { flex: 1 1 40%; }
+}
+
+/* ---------- Testimonios ---------- */
+.testimonial-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+.testimonial {
+  margin: 0;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--pink);
+}
+.testimonial blockquote {
+  margin: 0 0 1rem;
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.testimonial figcaption { font-size: 0.9rem; color: #5B5A64; }
+
+@media (max-width: 900px) {
+  .testimonial-list { grid-template-columns: 1fr; }
+}
+
+/* ---------- Contacto ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+}
+.contact-details { margin: 0; }
+.contact-details > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+.contact-details dt { color: #5B5A64; }
+.contact-details dd { margin: 0; font-weight: 500; text-align: right; }
+
+.contact-form {
+  background: var(--white); /* opaco a propósito: legibilidad del formulario */
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+.field { margin-bottom: 1.1rem; }
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #34333D;
+}
+.field input, .field textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.65em 0.8em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--ink);
+}
+.field input:focus, .field textarea:focus {
+  outline: 2px solid var(--indigo);
+  outline-offset: 1px;
+  border-color: var(--indigo);
+}
+.form-status {
+  margin: 0.9rem 0 0;
+  font-size: 0.9rem;
+}
+.form-status[data-state="ok"] { color: var(--green-dark); }
+.form-status[data-state="error"] { color: #9C3B3B; }
+
+@media (max-width: 800px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--surface-indigo); /* semitransparente: deja ver el skyline de fondo */
+  color: var(--blue-pastel);
+}
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-block: 2rem;
+  font-size: 0.9rem;
+}
+.brand-footer .brand-name { color: var(--white); }
+.footer-nav { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+.footer-nav a { text-decoration: none; color: var(--blue-pastel); }
+.footer-nav a:hover { color: var(--white); }
+.footer-legal { margin: 0; color: rgba(195,216,247,0.75); width: 100%; }
+
+@media (min-width: 800px) {
+  .footer-legal { width: auto; }
+}
