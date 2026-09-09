@@ -53,7 +53,7 @@
         return;
       }
 
-      if (FORM_ENDPOINT.indexOf("mzebygzz") !== -1) {
+      if (FORM_ENDPOINT.indexOf("https://formspree.io/f/mzebygzz") !== -1) {
         status.dataset.state = "error";
         status.textContent =
           "Falta configurar el formulario: completá FORM_ENDPOINT en script.js con tu endpoint de Formspree/Web3Forms.";
