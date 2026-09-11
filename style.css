@@ -56,7 +56,7 @@ body {
      Fijo (fixed) para que se perciba como una textura constante
      detrás de todas las secciones al hacer scroll. */
   background-color: var(--bg);
-  background-image: url("img/skyline.svg");
+  background-image: url("img/background.jpg");
   background-repeat: no-repeat;
   background-position: bottom center;
   background-size: cover;
