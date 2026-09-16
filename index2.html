@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extractor de facturas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EEF1F4;
+    --panel: #FFFFFF;
+    --ink: #1B2430;
+    --ink-soft: #5B6674;
+    --accent: #2C6E63;
+    --accent-ink: #FFFFFF;
+    --border: #D7DCE2;
+    --danger: #A6402A;
+    --warn: #92651E;
+    --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10141A;
+      --panel: #182029;
+      --ink: #E7ECF1;
+      --ink-soft: #97A4B2;
+      --accent: #59B39F;
+      --accent-ink: #0B1210;
+      --border: #2A3440;
+      --danger: #E2795F;
+      --warn: #D8A94B;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10141A;
+    --panel: #182029;
+    --ink: #E7ECF1;
+    --ink-soft: #97A4B2;
+    --accent: #59B39F;
+    --accent-ink: #0B1210;
+    --border: #2A3440;
+    --danger: #E2795F;
+    --warn: #D8A94B;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+  }
+
+  .app { min-height: 100vh; display: flex; flex-direction: column; }
+
+  header {
+    padding: 22px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  header p {
+    margin: 4px 0 0;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+
+  .layout {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .panel {
+    flex: 1 1 440px;
+    min-width: 320px;
+    padding: 28px 32px 36px;
+  }
+
+  .viewer {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    border-right: 1px solid var(--border);
+  }
+
+  @media (max-width: 860px) {
+    .viewer { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+
+  .viewer-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.15s ease;
+  }
+  .upload-btn:hover { opacity: 0.88; }
+  .upload-btn:active { opacity: 0.75; }
+  .upload-btn svg { width: 16px; height: 16px; flex: none; }
+
+  input[type="file"] {
+    position: absolute;
+    width: 1px; height: 1px;
+    opacity: 0;
+    overflow: hidden;
+  }
+  input[type="file"]:focus-visible + .upload-btn,
+  .upload-btn:has(input[type="file"]:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .file-name {
+    font-size: 13px;
+    color: var(--ink-soft);
+    overflow-wrap: anywhere;
+  }
+
+  .viewer-stage {
+    flex: 1;
+    min-height: 380px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    padding: 16px;
+  }
+
+  .viewer-placeholder {
+    color: var(--ink-soft);
+    font-size: 14px;
+    text-align: center;
+    max-width: 260px;
+    line-height: 1.5;
+  }
+
+  #preview-img, #preview-canvas {
+    max-width: 100%;
+    max-height: 68vh;
+    display: block;
+  }
+
+  .data {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .data-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .data-header h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .ghost-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--ink-soft);
+    font-family: inherit;
+    font-size: 12.5px;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .ghost-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .status {
+    min-height: 20px;
+    font-size: 13px;
+    margin: 14px 0 6px;
+  }
+  .status-loading { color: var(--ink-soft); }
+  .status-ok { color: var(--accent); }
+  .status-warn { color: var(--warn); }
+  .status-error { color: var(--danger); }
+
+  .field {
+    margin-top: 22px;
+  }
+  .field label {
+    display: block;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .field input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--border);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 15px;
+    padding: 6px 2px 8px;
+    transition: border-color 0.15s ease;
+  }
+  .field input::placeholder { color: var(--ink-soft); opacity: 0.6; }
+  .field input:focus {
+    outline: none;
+    border-bottom-color: var(--accent);
+  }
+  .field input:disabled { opacity: 0.55; }
+
+  .hint {
+    margin-top: 28px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Extractor de facturas</h1>
+    <p>Subí una factura (imagen o PDF) para verla y completar empresa, CUIL e importe total.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel viewer">
+      <div class="viewer-toolbar">
+        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/gif,application/pdf">
+        <label class="upload-btn" for="file-input">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+          Subir archivo
+        </label>
+        <span class="file-name" id="file-name"></span>
+      </div>
+      <div class="viewer-stage" id="viewer-stage">
+        <p class="viewer-placeholder" id="viewer-placeholder">La factura que subas se muestra acá — imagen (JPG, PNG, WebP, GIF) o PDF.</p>
+        <img id="preview-img" alt="Vista previa de la factura" hidden>
+        <canvas id="preview-canvas" hidden></canvas>
+      </div>
+    </section>
+
+    <section class="panel data">
+      <div class="data-header">
+        <h2>Datos detectados</h2>
+        <button type="button" class="ghost-btn" id="retry-btn" hidden>Reintentar extracción</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+
+      <div class="field">
+        <label for="field-empresa">Nombre de la empresa</label>
+        <input type="text" id="field-empresa" placeholder="Sin datos todavía">
+      </div>
+      <div class="field">
+        <label for="field-cuil">CUIL / CUIT</label>
+        <input type="text" id="field-cuil" placeholder="Sin datos todavía">
+      </div>
+      <div class="field">
+        <label for="field-importe">Importe total</label>
+        <input type="text" id="field-importe" placeholder="Sin datos todavía">
+      </div>
+
+      <p class="hint">Los tres campos se completan solos al subir el archivo. Revisalos siempre contra la factura y corregí a mano lo que haga falta.</p>
+    </section>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+  const fileInput = document.getElementById('file-input');
+  const fileNameEl = document.getElementById('file-name');
+  const placeholder = document.getElementById('viewer-placeholder');
+  const imgEl = document.getElementById('preview-img');
+  const canvasEl = document.getElementById('preview-canvas');
+  const statusEl = document.getElementById('status');
+  const retryBtn = document.getElementById('retry-btn');
+  const fields = {
+    empresa: document.getElementById('field-empresa'),
+    cuil: document.getElementById('field-cuil'),
+    importe: document.getElementById('field-importe'),
+  };
+
+  let currentImageBlob = null;
+  let sample = null;
+  let sampleLimits = null;
+
+  const readyPromise = (async () => {
+    try {
+      if (typeof window.claude === 'undefined' || !window.claude || typeof window.claude.use !== 'function') {
+        return;
+      }
+      sample = await window.claude.use('sample');
+      if (sample) {
+        try { sampleLimits = await sample.limits(); } catch (e) { sampleLimits = null; }
+      }
+    } catch (e) {
+      sample = null;
+    }
+  })();
+
+  function setStatus(text, kind) {
+    statusEl.textContent = text || '';
+    statusEl.className = 'status' + (kind ? ' status-' + kind : '');
+  }
+
+  function resetFields() {
+    fields.empresa.value = '';
+    fields.cuil.value = '';
+    fields.importe.value = '';
+    setStatus('');
+  }
+
+  function setFieldsDisabled(disabled) {
+    fields.empresa.disabled = disabled;
+    fields.cuil.disabled = disabled;
+    fields.importe.disabled = disabled;
+  }
+
+  function showImagePreview(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        imgEl.src = reader.result;
+        imgEl.hidden = false;
+        canvasEl.hidden = true;
+        resolve();
+      };
+      reader.onerror = () => reject(new Error('read_failed'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function showPdfPreview(file) {
+    const buf = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+    const page = await pdf.getPage(1);
+    const viewport = page.getViewport({ scale: 1.8 });
+    canvasEl.width = viewport.width;
+    canvasEl.height = viewport.height;
+    const ctx = canvasEl.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    canvasEl.hidden = false;
+    imgEl.hidden = true;
+    return await new Promise((resolve) => canvasEl.toBlob(resolve, 'image/png'));
+  }
+
+  function copyForError(code) {
+    switch (code) {
+      case 'not_granted':
+        return 'No se autorizó el análisis automático. Completá los campos a mano.';
+      case 'images_unavailable':
+        return 'Esta vista no puede analizar imágenes. Completá los campos a mano.';
+      case 'image_rejected':
+        return 'La imagen no pudo procesarse (formato, tamaño o archivo dañado). Probá con otro archivo.';
+      case 'rate_limited':
+        return 'Se alcanzó el límite de uso por ahora. Probá de nuevo en un momento.';
+      case 'refused':
+        return 'No se pudo analizar esta imagen. Completá los campos a mano.';
+      case 'invalid_json':
+        return 'La respuesta no se pudo interpretar. Probá "Reintentar extracción".';
+      case 'sampling_disabled':
+      case 'not_declared':
+      case 'capability_disabled':
+      case 'capability_removed':
+        return 'El análisis automático no está disponible acá. Completá los campos a mano.';
+      case 'cancelled':
+        return '';
+      default:
+        return 'No se pudo completar la extracción. Probá "Reintentar extracción".';
+    }
+  }
+
+  async function extractData(isRetry) {
+    if (!currentImageBlob) return;
+    await readyPromise;
+
+    if (!sample) {
+      setStatus('El análisis automático no está disponible en esta vista. Completá los campos a mano.', 'warn');
+      return;
+    }
+    if (!sampleLimits || !sampleLimits.images) {
+      setStatus('Esta vista no puede analizar imágenes. Completá los campos a mano.', 'warn');
+      return;
+    }
+
+    setStatus(isRetry ? 'Reintentando extracción…' : 'Extrayendo datos de la factura…', 'loading');
+    setFieldsDisabled(true);
+
+    const prompt = 'Esta imagen es una factura. Extraé estos tres datos y devolvé SOLO un objeto JSON, sin ningún texto adicional:\n'
+      + '{"empresa": string o null, "cuil": string o null, "importe": string o null}\n'
+      + '- "empresa": el nombre o razón social de la empresa que emite la factura.\n'
+      + '- "cuil": el CUIL o CUIT que figura en la factura, tal como aparece escrito (por ejemplo 20-12345678-9).\n'
+      + '- "importe": el importe TOTAL de la factura, con el símbolo de moneda y separadores tal como figuran.\n'
+      + 'Si no encontrás alguno de los tres datos, usá null en ese campo. No inventes ni completes datos que no estén en la imagen.';
+
+    try {
+      const data = await sample.json(prompt, {
+        images: currentImageBlob,
+        modelTier: 'default',
+        cache: false,
+      });
+      fields.empresa.value = data && data.empresa ? String(data.empresa) : '';
+      fields.cuil.value = data && data.cuil ? String(data.cuil) : '';
+      fields.importe.value = data && data.importe ? String(data.importe) : '';
+
+      const missing = ['empresa', 'cuil', 'importe'].filter((k) => !data || !data[k]);
+      if (missing.length === 3) {
+        setStatus('No se pudo identificar ningún dato. Completá los campos a mano.', 'warn');
+      } else if (missing.length > 0) {
+        setStatus('Extracción parcial — revisá los campos vacíos.', 'warn');
+      } else {
+        setStatus('Datos extraídos. Revisalos contra la factura antes de usarlos.', 'ok');
+      }
+    } catch (err) {
+      console.error(err);
+      const msg = copyForError(err && err.code);
+      if (msg) setStatus(msg, 'error');
+      else setStatus('');
+    } finally {
+      setFieldsDisabled(false);
+    }
+  }
+
+  fileInput.addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    fileNameEl.textContent = file.name;
+    resetFields();
+    placeholder.hidden = true;
+    retryBtn.hidden = true;
+    currentImageBlob = null;
+
+    try {
+      if (file.type.startsWith('image/')) {
+        await showImagePreview(file);
+        currentImageBlob = file;
+      } else if (file.type === 'application/pdf') {
+        currentImageBlob = await showPdfPreview(file);
+      } else {
+        placeholder.hidden = false;
+        placeholder.textContent = 'Formato no soportado. Subí una imagen (JPG, PNG, WebP, GIF) o un PDF.';
+        imgEl.hidden = true;
+        canvasEl.hidden = true;
+        return;
+      }
+    } catch (err) {
+      console.error(err);
+      placeholder.hidden = false;
+      placeholder.textContent = 'No se pudo leer el archivo. Probá con otro.';
+      imgEl.hidden = true;
+      canvasEl.hidden = true;
+      return;
+    }
+
+    retryBtn.hidden = false;
+    extractData(false);
+  });
+
+  retryBtn.addEventListener('click', () => extractData(true));
+</script>
+</body>
+</html>
