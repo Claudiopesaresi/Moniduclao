@@ -60,10 +60,10 @@ Los colores están centralizados en `style.css`, dentro de `:root` (arriba del t
 
 Tipografías (Google Fonts): **Cormorant Garamond** para títulos y **Manrope** para textos.
 
-Las fotos de edificios (hero, "Cómo trabajamos", "Servicios", "La empresa" y "Contacto") vienen de
-[Unsplash](https://unsplash.com/license), de uso libre y gratuito, y se cargan directo desde
-`images.unsplash.com`. Si preferís tenerlas dentro del repo, descargá cada una (las URLs están en
-`index.html`), guardalas en `img/` y cambiá el `src` por la ruta local (por ejemplo `img/hero.jpg`).
+La única foto decorativa es la de facturas y calculadora (sección "Cómo trabajamos"). Viene de
+[Unsplash](https://unsplash.com/license), es de uso libre y gratuito, y se carga directo desde
+`images.unsplash.com`. Si preferís tenerla dentro del repo, descargala (la URL está en `index.html`),
+guardala en `img/` y cambiá el `src` por la ruta local (por ejemplo `img/facturas.jpg`).
 
 Las fotos de las noticias siguen estando en `img/`.
 
