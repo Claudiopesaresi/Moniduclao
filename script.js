@@ -1,5 +1,5 @@
 /* ============================================================
-   [Nombre de tu Empresa] — script.js
+   Soluciones PH — script.js
    Todo el código corre en el navegador (GitHub Pages solo sirve
    archivos estáticos, no ejecuta backend). El formulario de
    contacto usa Formspree como servicio externo para recibir los
@@ -9,6 +9,32 @@
 (function () {
   "use strict";
 
+  document.documentElement.classList.add("js");
+
+  /* --------- Encabezado que cambia al hacer scroll --------- */
+  var header = document.querySelector(".site-header");
+  function onScroll() {
+    if (header) header.classList.toggle("is-scrolled", window.scrollY > 40);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* --------- Aparición suave de las secciones --------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+  }
+
   /* --------- Menú móvil --------- */
   var navToggle = document.getElementById("navToggle");
   var siteNav = document.getElementById("siteNav");
@@ -17,12 +43,14 @@
     navToggle.addEventListener("click", function () {
       var isOpen = siteNav.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", String(isOpen));
+      document.body.style.overflow = isOpen ? "hidden" : "";
     });
 
     siteNav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
         siteNav.classList.remove("is-open");
         navToggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
       });
     });
   }

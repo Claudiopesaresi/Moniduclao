@@ -50,28 +50,31 @@ Si más adelante comprás un dominio (ej. `tuempresa.com.ar`):
 2. En el panel DNS de donde registraste el dominio, agregá un registro `CNAME` apuntando a `TU_USUARIO.github.io`.
 3. En **Settings → Pages**, escribí el dominio en el campo "Custom domain" y activá "Enforce HTTPS" cuando esté disponible.
 
-## 5. Paleta de colores y fondo
+## 5. Diseño, colores y fotos
 
-Los colores están centralizados en `style.css`, dentro de `:root` (arriba del todo), así que para ajustar tonos alcanza con cambiar esos valores una sola vez:
+Los colores están centralizados en `style.css`, dentro de `:root` (arriba del todo):
 
 ```
---indigo, --green, --yellow, --pink, --blue-pastel
+--evergreen (verde petróleo, color principal), --brass (bronce, acento), --stone (fondo piedra)
 ```
 
-El fondo de ciudad es una ilustración propia en `img/skyline.svg` (no una foto), así que no tiene ningún problema de copyright. Está difuminada y con opacidad baja adentro del propio archivo para que nunca compita con el texto. Si en algún momento preferís una foto real:
+Tipografías (Google Fonts): **Cormorant Garamond** para títulos y **Manrope** para textos.
 
-1. Conseguí una imagen libre de derechos (por ejemplo en unsplash.com o pexels.com) y guardala como `img/city.jpg`.
-2. En `style.css`, dentro de `body`, cambiá la línea `background-image: url("img/skyline.svg");` por `background-image: url("img/city.jpg");`.
-3. Si la foto es muy protagonista, podés oscurecerla agregando esto justo debajo, en el mismo bloque `body`: `background-color` con más opacidad, o agregar un overlay con un pseudo-elemento — avisame y te lo dejo armado.
+Las fotos de edificios (hero, "Cómo trabajamos", "Servicios", "La empresa" y "Contacto") vienen de
+[Unsplash](https://unsplash.com/license), de uso libre y gratuito, y se cargan directo desde
+`images.unsplash.com`. Si preferís tenerlas dentro del repo, descargá cada una (las URLs están en
+`index.html`), guardalas en `img/` y cambiá el `src` por la ruta local (por ejemplo `img/hero.jpg`).
+
+Las fotos de las noticias siguen estando en `img/`.
 
 ## Estructura de archivos
 
 ```
-index.html      → contenido y estructura de las 6 secciones
-style.css       → paleta, tipografía y layout responsive
-script.js       → menú móvil, año del footer, envío del formulario
-img/skyline.svg → ilustración de fondo (ciudad, difuminada)
-README.md       → este archivo
+index.html  → contenido y estructura de las secciones
+style.css   → paleta, tipografía y layout responsive
+script.js   → menú móvil, encabezado al hacer scroll, animaciones, año del footer, formulario
+img/        → fotos de las noticias
+README.md   → este archivo
 ```
 
 No hay dependencias que instalar ni paso de build: abrir `index.html` en el navegador ya muestra el sitio completo.

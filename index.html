@@ -2,285 +2,43 @@
 <html lang="es-AR">
 <head>
 <meta charset="UTF-8">
-<link rel="canonical" href="https://solucionesph.com.ar/">
-<meta property="og:title" content="Soluciones PH — Administración de consorcios">
-<meta property="og:description" content="Rendición de cuentas clara, mantenimiento a tiempo y atención directa a cada reclamo.">
-<meta property="og:image" content="https://solucionesph.com.ar/img/fachada.jpg">
-<meta property="og:url" content="https://solucionesph.com.ar/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Soluciones PH — Administración de consorcios</title>
 <meta name="description" content="Administración de consorcios con rendición de cuentas clara, mantenimiento a tiempo y atención directa a cada reclamo.">
+<link rel="canonical" href="https://solucionesph.com.ar/">
+<meta name="theme-color" content="#10201E">
 
-<!-- Reemplazá "[Nombre de tu Empresa]" en todo el archivo por el nombre real. Buscá TODO-EDITAR en los comentarios para encontrar los datos que hay que completar. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Soluciones PH — Administración de consorcios">
+<meta property="og:description" content="Rendición de cuentas clara, mantenimiento a tiempo y atención directa a cada reclamo.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&h=630&q=80">
+<meta property="og:url" content="https://solucionesph.com.ar/">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231E3332'/%3E%3Cpath d='M8 24V13l5-3 5 3v11M8 24h10M11 24v-4h4v4' stroke='%239C7A45' stroke-width='1.6' fill='none'/%3E%3Cpath d='M20 24V9l4-1v16h-4' stroke='%234F6F63' stroke-width='1.6' fill='none'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2310201E'/%3E%3Cpath d='M8 24V13l5-3 5 3v11M8 24h10M11 24v-4h4v4' stroke='%23C2A06A' stroke-width='1.6' fill='none'/%3E%3Cpath d='M20 24V9l4-1v16h-4' stroke='%23C2A06A' stroke-width='1.6' fill='none'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1800&q=75">
 
 <link rel="stylesheet" href="style.css">
-
-  <!-- ============ LECTOR ============ -->
-<!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-<!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-
-<style>
-  :root {
-    --bg: #EEF1F4;
-    --panel: #FFFFFF;
-    --ink: #1B2430;
-    --ink-soft: #5B6674;
-    --accent: #2C6E63;
-    --accent-ink: #FFFFFF;
-    --border: #D7DCE2;
-    --danger: #A6402A;
-    --warn: #92651E;
-    --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #10141A;
-      --panel: #182029;
-      --ink: #E7ECF1;
-      --ink-soft: #97A4B2;
-      --accent: #59B39F;
-      --accent-ink: #0B1210;
-      --border: #2A3440;
-      --danger: #E2795F;
-      --warn: #D8A94B;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #10141A;
-    --panel: #182029;
-    --ink: #E7ECF1;
-    --ink-soft: #97A4B2;
-    --accent: #59B39F;
-    --accent-ink: #0B1210;
-    --border: #2A3440;
-    --danger: #E2795F;
-    --warn: #D8A94B;
-  }
-
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    min-height: 100vh;
-  }
-
-  .app { min-height: 100vh; display: flex; flex-direction: column; }
-
-  header {
-    padding: 22px 32px;
-    border-bottom: 1px solid var(--border);
-  }
-  header h1 {
-    margin: 0;
-    font-size: 19px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-  header p {
-    margin: 4px 0 0;
-    font-size: 13.5px;
-    color: var(--ink-soft);
-  }
-
-  .layout {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .panel {
-    flex: 1 1 440px;
-    min-width: 320px;
-    padding: 28px 32px 36px;
-  }
-
-  .viewer {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    border-right: 1px solid var(--border);
-  }
-
-  @media (max-width: 860px) {
-    .viewer { border-right: none; border-bottom: 1px solid var(--border); }
-  }
-
-  .viewer-toolbar {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .upload-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--accent);
-    color: var(--accent-ink);
-    font-weight: 600;
-    font-size: 14px;
-    padding: 10px 18px;
-    border-radius: 3px;
-    cursor: pointer;
-    user-select: none;
-    transition: opacity 0.15s ease;
-  }
-  .upload-btn:hover { opacity: 0.88; }
-  .upload-btn:active { opacity: 0.75; }
-  .upload-btn svg { width: 16px; height: 16px; flex: none; }
-
-  input[type="file"] {
-    position: absolute;
-    width: 1px; height: 1px;
-    opacity: 0;
-    overflow: hidden;
-  }
-  input[type="file"]:focus-visible + .upload-btn,
-  .upload-btn:has(input[type="file"]:focus-visible) {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-
-  .file-name {
-    font-size: 13px;
-    color: var(--ink-soft);
-    overflow-wrap: anywhere;
-  }
-
-  .viewer-stage {
-    flex: 1;
-    min-height: 380px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: auto;
-    padding: 16px;
-  }
-
-  .viewer-placeholder {
-    color: var(--ink-soft);
-    font-size: 14px;
-    text-align: center;
-    max-width: 260px;
-    line-height: 1.5;
-  }
-
-  #preview-img, #preview-canvas {
-    max-width: 100%;
-    max-height: 68vh;
-    display: block;
-  }
-
-  .data {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .data-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 4px;
-  }
-
-  .data-header h2 {
-    margin: 0;
-    font-size: 15px;
-    font-weight: 600;
-  }
-
-  .ghost-btn {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--ink-soft);
-    font-family: inherit;
-    font-size: 12.5px;
-    padding: 6px 12px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: border-color 0.15s ease, color 0.15s ease;
-  }
-  .ghost-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-  .status {
-    min-height: 20px;
-    font-size: 13px;
-    margin: 14px 0 6px;
-  }
-  .status-loading { color: var(--ink-soft); }
-  .status-ok { color: var(--accent); }
-  .status-warn { color: var(--warn); }
-  .status-error { color: var(--danger); }
-
-  .field {
-    margin-top: 22px;
-  }
-  .field label {
-    display: block;
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    margin-bottom: 6px;
-  }
-  .field input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid var(--border);
-    color: var(--ink);
-    font-family: var(--font-mono);
-    font-size: 15px;
-    padding: 6px 2px 8px;
-    transition: border-color 0.15s ease;
-  }
-  .field input::placeholder { color: var(--ink-soft); opacity: 0.6; }
-  .field input:focus {
-    outline: none;
-    border-bottom-color: var(--accent);
-  }
-  .field input:disabled { opacity: 0.55; }
-
-  .hint {
-    margin-top: 28px;
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-  }
-</style>
-
 </head>
 <body>
 
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+<!-- ============ ENCABEZADO ============ -->
 <header class="site-header" id="inicio">
   <div class="wrap header-inner">
     <a class="brand" href="#inicio" aria-label="Soluciones PH, inicio">
-      <svg class="brand-mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
-        <rect width="32" height="32" rx="4" fill="var(--indigo)"/>
-        <path d="M8 24V13l5-3 5 3v11M8 24h10M11 24v-4h4v4" stroke="var(--green)" stroke-width="1.6" fill="none"/>
-        <path d="M20 24V9l4-1v16h-4" stroke="var(--pink)" stroke-width="1.6" fill="none"/>
+      <svg class="brand-mark" viewBox="0 0 32 32" width="36" height="36" aria-hidden="true">
+        <rect width="32" height="32" rx="3" fill="currentColor" opacity=".08"/>
+        <rect x=".5" y=".5" width="31" height="31" rx="3" fill="none" stroke="var(--brass)" opacity=".7"/>
+        <path d="M8 24V13l5-3 5 3v11M8 24h10M11 24v-4h4v4" stroke="var(--brass)" stroke-width="1.5" fill="none"/>
+        <path d="M20 24V9l4-1v16h-4" stroke="currentColor" stroke-width="1.5" fill="none"/>
       </svg>
-      <span class="brand-name">Soluciones PH</span>
+      <span class="brand-name">Soluciones <em>PH</em></span>
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
@@ -296,7 +54,7 @@
       <a href="#nosotros">La empresa</a>
       <a href="#noticias">Noticias</a>
       <a href="#contacto">Contacto</a>
-      <a class="btn btn-ghost nav-cta" href="#contacto">Escribinos</a>
+      <a class="btn btn-outline nav-cta" href="#contacto">Escribinos</a>
     </nav>
   </div>
 </header>
@@ -305,113 +63,124 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
+    <picture class="hero-media" aria-hidden="true">
+      <source media="(max-width: 700px)" srcset="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&h=1300&q=70">
+      <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1800&q=75" alt="" fetchpriority="high">
+    </picture>
     <div class="wrap hero-inner">
-      <div class="hero-copy">
+      <div class="hero-copy reveal">
         <h1>Gestión de consorcios sin sorpresas en las expensas.</h1>
         <p class="hero-lead">Administramos tu edificio con rendición de cuentas clara, mantenimiento a tiempo y un canal directo para cada reclamo.</p>
         <div class="hero-actions">
           <!-- TODO-EDITAR: reemplazá el número de WhatsApp (formato 549 + código de área sin 0 + número sin 15) -->
           <a class="btn btn-primary" href="https://wa.me/5491131244440?text=Hola%2C%20quiero%20consultar%20por%20la%20administraci%C3%B3n%20de%20mi%20consorcio" target="_blank" rel="noopener">
             Hablar por WhatsApp
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
           </a>
-          <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+          <a class="btn btn-light" href="#servicios">Ver servicios</a>
         </div>
       </div>
-      <div class="hero-graphic" aria-hidden="true">
-        <svg viewBox="0 0 420 360" width="100%" height="100%">
-          <rect x="40" y="120" width="90" height="200" fill="none" stroke="var(--green)" stroke-width="1.6"/>
-          <rect x="150" y="60" width="110" height="260" fill="none" stroke="var(--pink)" stroke-width="1.6"/>
-          <rect x="280" y="150" width="80" height="170" fill="none" stroke="var(--green)" stroke-width="1.6"/>
-          <g stroke="var(--border)" stroke-width="1.2">
-            <path d="M55 150h20M55 175h20M55 200h20M55 225h20M55 250h20M55 275h20M85 150h20M85 175h20M85 200h20M85 225h20M85 250h20M85 275h20"/>
-            <path d="M165 90h20M165 115h20M165 140h20M165 165h20M165 190h20M165 215h20M165 240h20M165 265h20M195 90h20M195 115h20M195 140h20M195 165h20M195 190h20M195 215h20M195 240h20M195 265h20M225 90h20M225 115h20M225 140h20M225 165h20M225 190h20M225 215h20M225 240h20M225 265h20"/>
-            <path d="M292 180h20M292 205h20M292 230h20M292 255h20M292 280h20M325 180h20M325 205h20M325 230h20M325 255h20M325 280h20"/>
-          </g>
-          <line x1="20" y1="320" x2="400" y2="320" stroke="var(--ink)" stroke-width="2"/>
-        </svg>
-      </div>
     </div>
+    <a class="hero-scroll" href="#forma-de-trabajo" aria-label="Ir a Cómo trabajamos"><span></span></a>
   </section>
 
   <!-- ============ NUESTRA FORMA DE TRABAJO ============ -->
   <section class="section" id="forma-de-trabajo">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Nuestra forma de trabajo</h2>
-        <p>Un método claro, eficiente, adaptado a las necesidades y características de cada consorcio, desde el primer diagnóstico hasta la rendición de cuentas mensual.</p>
+    <div class="wrap work-grid">
+      <div class="work-media reveal" aria-hidden="true">
+        <img class="work-img-main" src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=900&h=1100&q=72" alt="" loading="lazy">
+        <img class="work-img-small" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&h=600&q=72" alt="" loading="lazy">
       </div>
 
-      <ol class="process">
-        <li class="process-step">
-          <span class="process-number">01</span>
-          <h3>Diagnóstico del consorcio</h3>
-          <p>Relevamos el estado del edificio, la deuda acumulada y los reclamos pendientes antes de asumir la administración.</p>
-        </li>
-        <li class="process-step">
-          <span class="process-number">02</span>
-          <h3>Plan de gestión a medida</h3>
-          <p>Armamos un cronograma de mantenimiento y un presupuesto anual claro, aprobado en asamblea.</p>
-        </li>
-        <li class="process-step">
-          <span class="process-number">03</span>
-          <h3>Ejecución y seguimiento</h3>
-          <p>Coordinamos proveedores, resolvemos reclamos y mantenemos informados a los propietarios mes a mes.</p>
-        </li>
-        <li class="process-step">
-          <span class="process-number">04</span>
-          <h3>Rendición de cuentas</h3>
-          <p>Publicamos la liquidación de expensas y el estado de cuenta de forma accesible para todos los propietarios.</p>
-        </li>
-      </ol>
+      <div class="work-copy">
+        <div class="section-head section-head-left reveal">
+          <h2>Nuestra forma de trabajo</h2>
+          <p>Un método claro, eficiente, adaptado a las necesidades y características de cada consorcio, desde el primer diagnóstico hasta la rendición de cuentas mensual.</p>
+        </div>
+
+        <ol class="process">
+          <li class="process-step reveal">
+            <span class="process-number">01</span>
+            <div>
+              <h3>Diagnóstico del consorcio</h3>
+              <p>Relevamos el estado del edificio, la deuda acumulada y los reclamos pendientes antes de asumir la administración.</p>
+            </div>
+          </li>
+          <li class="process-step reveal">
+            <span class="process-number">02</span>
+            <div>
+              <h3>Plan de gestión a medida</h3>
+              <p>Armamos un cronograma de mantenimiento y un presupuesto anual claro, aprobado en asamblea.</p>
+            </div>
+          </li>
+          <li class="process-step reveal">
+            <span class="process-number">03</span>
+            <div>
+              <h3>Ejecución y seguimiento</h3>
+              <p>Coordinamos proveedores, resolvemos reclamos y mantenemos informados a los propietarios mes a mes.</p>
+            </div>
+          </li>
+          <li class="process-step reveal">
+            <span class="process-number">04</span>
+            <div>
+              <h3>Rendición de cuentas</h3>
+              <p>Publicamos la liquidación de expensas y el estado de cuenta de forma accesible para todos los propietarios.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <!-- ============ SERVICIOS ============ -->
-  <section class="section section-alt" id="servicios">
+  <section class="section section-dark" id="servicios">
+    <div class="services-bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=70" alt="" loading="lazy">
+    </div>
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Servicios</h2>
         <p>Todo lo que necesita un consorcio para funcionar, en un solo lugar.</p>
       </div>
 
       <div class="service-list">
-        <div class="service-row">
-          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="8" y="6" width="24" height="28" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M13 14h14M13 20h14M13 26h9" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div class="service-row reveal">
+          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="8" y="6" width="24" height="28" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M13 14h14M13 20h14M13 26h9" stroke="currentColor" stroke-width="1.4"/></svg>
           <div>
             <h3>Liquidación de expensas</h3>
             <p>Elaboración y emisión de las liquidaciones de expensas, seguimiento de cobranzas y presentación de reportes claros a los propietarios.</p>
           </div>
         </div>
-        <div class="service-row">
-          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6l12 7v14l-12 7-12-7V13z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M20 20v10M20 20l10-6M20 20L10 14" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div class="service-row reveal">
+          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6l12 7v14l-12 7-12-7V13z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M20 20v10M20 20l10-6M20 20L10 14" stroke="currentColor" stroke-width="1.4"/></svg>
           <div>
             <h3>Mantenimiento edilicio</h3>
             <p>Coordinación de proveedores para plomería, electricidad, ascensores y mantenimiento de espacios comunes.</p>
           </div>
         </div>
-        <div class="service-row">
-          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="14" cy="14" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="27" cy="16" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 33c0-6 4-10 9-10 3 0 5.5 1.4 7 3.5M22 33c0-5 3.5-8.5 9-8.5s9 3.5 9 8.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div class="service-row reveal">
+          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="14" cy="14" r="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="27" cy="16" r="4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M6 33c0-6 4-10 9-10 3 0 5.5 1.4 7 3.5M22 33c0-5 3.5-8.5 9-8.5s9 3.5 9 8.5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
           <div>
             <h3>Gestión de asambleas</h3>
             <p>Convocatoria, organización y confección de actas conforme a la normativa vigente.</p>
           </div>
         </div>
-        <div class="service-row">
-          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 20a12 12 0 1 1 5 9.8L8 32l2.3-5A11.9 11.9 0 0 1 8 20Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 20h12M14 24h8" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div class="service-row reveal">
+          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 20a12 12 0 1 1 5 9.8L8 32l2.3-5A11.9 11.9 0 0 1 8 20Z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M14 20h12M14 24h8" stroke="currentColor" stroke-width="1.4"/></svg>
           <div>
             <h3>Atención y seguimiento de reclamos</h3>
             <p>Canal de comunicación directo para la gestión y el seguimiento de los reclamos de propietarios e inquilinos o de quienes habiten el edificio.</p>
           </div>
         </div>
-        <div class="service-row">
-          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 33c0-7 5-12 11-12s11 5 11 12" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div class="service-row reveal">
+          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9 33c0-7 5-12 11-12s11 5 11 12" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
           <div>
             <h3>Gestión de personal</h3>
             <p>Coordinación y seguimiento de las tareas del personal del edificio y sus obligaciones laborales, informes periódicos y gestion de sueldos y jornales.</p>
           </div>
         </div>
-        <div class="service-row">
-          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5v30M11 11h18M11 11l-5 10h10l-5-10zM29 11l-5 10h10l-5-10z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 27h10M22 27h10" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div class="service-row reveal">
+          <svg class="service-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5v30M11 11h18M11 11l-5 10h10l-5-10zM29 11l-5 10h10l-5-10z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 27h10M22 27h10" stroke="currentColor" stroke-width="1.4"/></svg>
           <div>
             <h3>Asesoramiento legal y contable</h3>
             <p>Coordinación con profesionales especializados para el tratamiento de cuestiones legales, contables e impositivas que requiera el consorcio.</p>
@@ -424,7 +193,7 @@
   <!-- ============ SOBRE LA EMPRESA ============ -->
   <section class="section" id="nosotros">
     <div class="wrap about-grid">
-      <div class="about-copy">
+      <div class="about-copy reveal">
         <div class="section-head section-head-left">
           <h2>Sobre la empresa</h2>
         </div>
@@ -432,64 +201,68 @@
         <p>Con experiencia en administración de consorcios desde 2015, desarrollamos esta propuesta de gestión basada en la transparencia, el seguimiento y una comunicación directa y fluida con cada consorcio. Coordinamos proveedores especializados y hacemos el seguimiento de cada trabajo para dar respuesta de manera ágil y transparente.</p>
         <p>Cada consorcio cuenta con un equipo de referencia para acompañar su gestión y mantener una comunicación directa y fluida.</p>
       </div>
-      <div class="about-stats">
-        <!-- <div class="stat"><span class="stat-number">[XX]</span><span class="stat-label">consorcios administrados</span></div>  -->
-        <div class="stat"><span class="stat-number">10</span><span class="stat-label"> años de trayectoria</span></div>  
-        <div class="stat"><span class="stat-number">&lt; 4 hs.</span><span class="stat-label"> tiempo de respuesta a reclamos</span></div>
+      <div class="about-media reveal">
+        <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=1000&h=820&q=72" alt="" loading="lazy">
+        <div class="about-stats">
+          <!-- <div class="stat"><span class="stat-number">[XX]</span><span class="stat-label">consorcios administrados</span></div>  -->
+          <div class="stat"><span class="stat-number">10</span><span class="stat-label"> años de trayectoria</span></div>
+          <div class="stat"><span class="stat-number">&lt; 4 hs.</span><span class="stat-label"> tiempo de respuesta a reclamos</span></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============ NOTICIAS ============ -->
-  <!-- TODO-EDITAR: estos son 3 ejemplos de distintos temas. Para agregar una
-       noticia, copiá un <li class="news-item">...</li> completo y pegalo
-       arriba de los demás (quedan ordenados por orden de aparición en el
-       archivo). Para quitar una, borrá su <li> completo. En cada una:
-       - src de la imagen: reemplazá "img/noticia-placeholder.svg" por la
-         foto real (por ejemplo "img/noticias/2026-01-ascensores.jpg").
-       - título y texto: reemplazá por el contenido real.
-       - el link del final ("Fuente: ...") tiene que apuntar a la nota
-         original si es una noticia de otro medio, o podés dejarlo sin
-         href real si es un aviso propio. -->
-  <section class="section section-alt-pink" id="noticias">
+  <!-- TODO-EDITAR: para agregar una noticia, copiá un <li class="news-item">...</li>
+       completo y pegalo arriba de los demás. Para quitar una, borrá su <li> completo.
+       En cada una: imagen (src), título, texto y el link de la fuente. -->
+  <section class="section section-stone" id="noticias">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
         <h2>Noticias</h2>
         <p>Novedades y recomendaciones para consorcios, actualizadas por nuestro equipo.</p>
       </div>
 
       <ul class="news-list">
-        <li class="news-item">
-          <img class="news-image" src="img/Recoleccion_de_basura.jpg" alt="" loading="lazy">
+        <li class="news-item reveal">
+          <div class="news-image-wrap"><img class="news-image" src="img/Recoleccion_de_basura.jpg" alt="" loading="lazy"></div>
           <div class="news-body">
             <h3>Sacá tu basura de 19 a 21 hs</h3>
             <p>Si todos colaboramos, la ciudad estará más limpia y es un beneficio para nuestro ambiente.</p>
-            <a class="news-source" href="https://buenosaires.gob.ar/gcaba_historico/jefatura-de-gabinete/higiene/higiene-del-espacio-publico/recoleccion-de-residuos-saca-tu-basura-de-19-21-hs" target="_blank" rel="noopener">Fuente: GCBA</a>
+            <div class="news-links">
+              <a class="news-source" href="https://buenosaires.gob.ar/gcaba_historico/jefatura-de-gabinete/higiene/higiene-del-espacio-publico/recoleccion-de-residuos-saca-tu-basura-de-19-21-hs" target="_blank" rel="noopener">Fuente: GCBA</a>
+            </div>
           </div>
         </li>
-        <li class="news-item">
-          <img class="news-image" src="img/Cuidado_con_el_Gas.jpg" alt="" loading="lazy">
+        <li class="news-item reveal">
+          <div class="news-image-wrap"><img class="news-image" src="img/Cuidado_con_el_Gas.jpg" alt="" loading="lazy"></div>
           <div class="news-body">
             <h3>Controlá los artefactos a gas - Por tu seguridad</h3>
             <p>Evitemos accidentes que pueden resultar fatales. Tené en cuenta los consejos de ENReGE</p>
-            <a class="news-source" href="https://www.enargas.gob.ar/secciones/seguridad-en-el-hogar/seguridad-en-el-hogar.php" target="_blank" rel="noopener">Fuente: ENReGE</a>
+            <div class="news-links">
+              <a class="news-source" href="https://www.enargas.gob.ar/secciones/seguridad-en-el-hogar/seguridad-en-el-hogar.php" target="_blank" rel="noopener">Fuente: ENReGE</a>
+            </div>
           </div>
         </li>
-        <li class="news-item">
-          <img class="news-image" src="img/Fachadas.jpg" alt="" loading="lazy">
+        <li class="news-item reveal">
+          <div class="news-image-wrap"><img class="news-image" src="img/Fachadas.jpg" alt="" loading="lazy"></div>
           <div class="news-body">
             <h3>¿Tu consorcio cumple con la ley de fachadas y balcones?</h3>
             <p>Para prevenir daños a vecinos y terceros, para evitar multas, para mantener el valor de lo nuestro, debemos cumplir la certificacion del frente de nuestros edificios</p>
-            <a class="news-source" href="https://boletinoficial.buenosaires.gob.ar/normativaba/norma/5486" target="_blank" rel="noopener">Fuente: Ley 257 1999 - Boletin Oficial</a>
+            <div class="news-links">
+              <a class="news-source" href="https://boletinoficial.buenosaires.gob.ar/normativaba/norma/5486" target="_blank" rel="noopener">Fuente: Ley 257 1999 - Boletin Oficial</a>
+            </div>
           </div>
         </li>
-        <li class="news-item">
-          <img class="news-image" src="img/Encargado.jpg" alt="" loading="lazy">
+        <li class="news-item reveal">
+          <div class="news-image-wrap"><img class="news-image" src="img/Encargado.jpg" alt="" loading="lazy"></div>
           <div class="news-body">
             <h3>Están al día los aportes patronales de los empleados del consorcio ?</h3>
             <p>Muchas veces confiamos en lo que refleja la liquidación de expensas, se descuentan aportes y asumimos que se depositan. No está de más verificar.</p>
-            <a class="news-source" href="https://serviciossegsoc.afip.gob.ar/MisAportes/app/basica/ingresoDatos.aspx" target="_blank" rel="noopener">Verificalo en ARCA</a>
-            <a class="news-source" href="https://suterh.org.ar/queres-saber-si-tu-consorcio-esta-al-dia/" target="_blank" rel="noopener">Verificalo en SUTERH</a>
+            <div class="news-links">
+              <a class="news-source" href="https://serviciossegsoc.afip.gob.ar/MisAportes/app/basica/ingresoDatos.aspx" target="_blank" rel="noopener">Verificalo en ARCA</a>
+              <a class="news-source" href="https://suterh.org.ar/queres-saber-si-tu-consorcio-esta-al-dia/" target="_blank" rel="noopener">Verificalo en SUTERH</a>
+            </div>
           </div>
         </li>
       </ul>
@@ -498,11 +271,14 @@
 
   <!-- ============ CONTACTO ============ -->
   <section class="section contact-section" id="contacto">
+    <div class="contact-bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1800&q=70" alt="" loading="lazy">
+    </div>
     <div class="wrap contact-grid">
-      <div class="contact-info">
+      <div class="contact-info reveal">
         <div class="section-head section-head-left">
           <h2>Contacto</h2>
-          <p>Hablemos de tu consorcio.</p>
+          <p class="contact-kicker">Hablemos de tu consorcio.</p>
           <p>Si estás buscando una administración clara, ordenada y con comunicación directa, contactanos.</p>
         </div>
 
@@ -514,101 +290,57 @@
 
         <dl class="contact-details">
           <!-- TODO-EDITAR: completá los datos reales de contacto -->
-          <div><dt>Teléfono</dt><dd>+54 11 3124-4440</dd></div>
-          <div><dt>Email</dt><dd>moniduclao@gmail.com</dd></div>
+          <div><dt>Teléfono</dt><dd><a href="tel:+541131244440">+54 11 3124-4440</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:moniduclao@gmail.com">moniduclao@gmail.com</a></dd></div>
           <div><dt>Dirección</dt><dd>Pte. J. E. Uriburu 782 Piso 10 - CABA</dd></div>
         </dl>
       </div>
 
-      <form class="contact-form" id="contactForm" novalidate>
-        <!-- TODO-EDITAR: creá una cuenta gratis en formspree.io, getform.io o web3forms.com y pegá tu endpoint acá -->
+      <form class="contact-form reveal" id="contactForm" novalidate>
         <input type="hidden" name="_subject" value="Nueva consulta desde la web">
 
-        <div class="field">
-          <label for="nombre">Nombre y apellido</label>
-          <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+        <div class="field-row">
+          <div class="field">
+            <label for="nombre">Nombre y apellido</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
         </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="telefono">Teléfono</label>
-          <input type="tel" id="telefono" name="telefono" autocomplete="tel">
-        </div>
-        <div class="field">
-          <label for="consorcio">Consorcio / dirección del edificio</label>
-          <input type="text" id="consorcio" name="consorcio">
+        <div class="field-row">
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="consorcio">Consorcio / dirección del edificio</label>
+            <input type="text" id="consorcio" name="consorcio">
+          </div>
         </div>
         <div class="field">
           <label for="mensaje">Mensaje</label>
           <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Enviar consulta</button>
+        <button type="submit" class="btn btn-primary btn-block">Enviar consulta</button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
-
-  <!-- ============ EXTRACTOR ============ -->
-  <!-- 
-    <section class="panel viewer">
-      <div class="viewer-toolbar">
-        <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/gif,application/pdf">
-        <label class="upload-btn" for="file-input">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
-          Subir archivo
-        </label>
-        <span class="file-name" id="file-name"></span>
-      </div>
-      <div class="viewer-stage" id="viewer-stage">
-        <p class="viewer-placeholder" id="viewer-placeholder">La factura que subas se muestra acá — imagen (JPG, PNG, WebP, GIF) o PDF.</p>
-        <img id="preview-img" alt="Vista previa de la factura" hidden>
-        <canvas id="preview-canvas" hidden></canvas>
-      </div>
-    </section>
-
-    <section class="panel data">
-      <div class="data-header">
-        <h2>Datos detectados</h2>
-        <button type="button" class="ghost-btn" id="retry-btn" hidden>Reintentar extracción</button>
-      </div>
-      <p class="status" id="status" role="status" aria-live="polite"></p>
-
-      <div class="field">
-        <label for="field-empresa">Nombre de la empresa</label>
-        <input type="text" id="field-empresa" placeholder="Sin datos todavía">
-      </div>
-      <div class="field">
-        <label for="field-cuil">CUIL / CUIT</label>
-        <input type="text" id="field-cuil" placeholder="Sin datos todavía">
-      </div>
-      <div class="field">
-        <label for="field-importe">Importe total</label>
-        <input type="text" id="field-importe" placeholder="Sin datos todavía">
-      </div>
-
-      <p class="hint">Los tres campos se completan solos al subir el archivo. Revisalos siempre contra la factura y corregí a mano lo que haga falta.</p>
-    </section>
-<<<<<<< HEAD
-  -->
-  <!-- ============ EXTRACTOR ============ -->
-=======
--->
->>>>>>> bf618b4fa342f17bfceaaf531c63e5d2c6a819ab
 
 </main>
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <a class="brand brand-footer" href="#inicio">
-      <svg class="brand-mark" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
-        <rect width="32" height="32" rx="4" fill="var(--border)"/>
-        <path d="M8 24V13l5-3 5 3v11M8 24h10M11 24v-4h4v4" stroke="var(--indigo)" stroke-width="1.6" fill="none"/>
-        <path d="M20 24V9l4-1v16h-4" stroke="var(--indigo)" stroke-width="1.6" fill="none"/>
+      <svg class="brand-mark" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+        <rect x=".5" y=".5" width="31" height="31" rx="3" fill="none" stroke="var(--brass)" opacity=".7"/>
+        <path d="M8 24V13l5-3 5 3v11M8 24h10M11 24v-4h4v4" stroke="var(--brass)" stroke-width="1.5" fill="none"/>
+        <path d="M20 24V9l4-1v16h-4" stroke="currentColor" stroke-width="1.5" fill="none"/>
       </svg>
-      <span class="brand-name">Soluciones PH</span>
+      <span class="brand-name">Soluciones <em>PH</em></span>
     </a>
     <nav class="footer-nav">
       <a href="#forma-de-trabajo">Cómo trabajamos</a>
@@ -622,201 +354,5 @@
 </footer>
 
 <script src="script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script>
-  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-  const fileInput = document.getElementById('file-input');
-  const fileNameEl = document.getElementById('file-name');
-  const placeholder = document.getElementById('viewer-placeholder');
-  const imgEl = document.getElementById('preview-img');
-  const canvasEl = document.getElementById('preview-canvas');
-  const statusEl = document.getElementById('status');
-  const retryBtn = document.getElementById('retry-btn');
-  const fields = {
-    empresa: document.getElementById('field-empresa'),
-    cuil: document.getElementById('field-cuil'),
-    importe: document.getElementById('field-importe'),
-  };
-
-  let currentImageBlob = null;
-  let sample = null;
-  let sampleLimits = null;
-
-  const readyPromise = (async () => {
-    try {
-      if (typeof window.claude === 'undefined' || !window.claude || typeof window.claude.use !== 'function') {
-        return;
-      }
-      sample = await window.claude.use('sample');
-      if (sample) {
-        try { sampleLimits = await sample.limits(); } catch (e) { sampleLimits = null; }
-      }
-    } catch (e) {
-      sample = null;
-    }
-  })();
-
-  function setStatus(text, kind) {
-    statusEl.textContent = text || '';
-    statusEl.className = 'status' + (kind ? ' status-' + kind : '');
-  }
-
-  function resetFields() {
-    fields.empresa.value = '';
-    fields.cuil.value = '';
-    fields.importe.value = '';
-    setStatus('');
-  }
-
-  function setFieldsDisabled(disabled) {
-    fields.empresa.disabled = disabled;
-    fields.cuil.disabled = disabled;
-    fields.importe.disabled = disabled;
-  }
-
-  function showImagePreview(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        imgEl.src = reader.result;
-        imgEl.hidden = false;
-        canvasEl.hidden = true;
-        resolve();
-      };
-      reader.onerror = () => reject(new Error('read_failed'));
-      reader.readAsDataURL(file);
-    });
-  }
-
-  async function showPdfPreview(file) {
-    const buf = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
-    const page = await pdf.getPage(1);
-    const viewport = page.getViewport({ scale: 1.8 });
-    canvasEl.width = viewport.width;
-    canvasEl.height = viewport.height;
-    const ctx = canvasEl.getContext('2d');
-    await page.render({ canvasContext: ctx, viewport }).promise;
-    canvasEl.hidden = false;
-    imgEl.hidden = true;
-    return await new Promise((resolve) => canvasEl.toBlob(resolve, 'image/png'));
-  }
-
-  function copyForError(code) {
-    switch (code) {
-      case 'not_granted':
-        return 'No se autorizó el análisis automático. Completá los campos a mano.';
-      case 'images_unavailable':
-        return 'Esta vista no puede analizar imágenes. Completá los campos a mano.';
-      case 'image_rejected':
-        return 'La imagen no pudo procesarse (formato, tamaño o archivo dañado). Probá con otro archivo.';
-      case 'rate_limited':
-        return 'Se alcanzó el límite de uso por ahora. Probá de nuevo en un momento.';
-      case 'refused':
-        return 'No se pudo analizar esta imagen. Completá los campos a mano.';
-      case 'invalid_json':
-        return 'La respuesta no se pudo interpretar. Probá "Reintentar extracción".';
-      case 'sampling_disabled':
-      case 'not_declared':
-      case 'capability_disabled':
-      case 'capability_removed':
-        return 'El análisis automático no está disponible acá. Completá los campos a mano.';
-      case 'cancelled':
-        return '';
-      default:
-        return 'No se pudo completar la extracción. Probá "Reintentar extracción".';
-    }
-  }
-
-  async function extractData(isRetry) {
-    if (!currentImageBlob) return;
-    await readyPromise;
-
-    if (!sample) {
-      setStatus('El análisis automático no está disponible en esta vista. Completá los campos a mano.', 'warn');
-      return;
-    }
-    if (!sampleLimits || !sampleLimits.images) {
-      setStatus('Esta vista no puede analizar imágenes. Completá los campos a mano.', 'warn');
-      return;
-    }
-
-    setStatus(isRetry ? 'Reintentando extracción…' : 'Extrayendo datos de la factura…', 'loading');
-    setFieldsDisabled(true);
-
-    const prompt = 'Esta imagen es una factura. Extraé estos tres datos y devolvé SOLO un objeto JSON, sin ningún texto adicional:\n'
-      + '{"empresa": string o null, "cuil": string o null, "importe": string o null}\n'
-      + '- "empresa": el nombre o razón social de la empresa que emite la factura.\n'
-      + '- "cuil": el CUIL o CUIT que figura en la factura, tal como aparece escrito (por ejemplo 20-12345678-9).\n'
-      + '- "importe": el importe TOTAL de la factura, con el símbolo de moneda y separadores tal como figuran.\n'
-      + 'Si no encontrás alguno de los tres datos, usá null en ese campo. No inventes ni completes datos que no estén en la imagen.';
-
-    try {
-      const data = await sample.json(prompt, {
-        images: currentImageBlob,
-        modelTier: 'default',
-        cache: false,
-      });
-      fields.empresa.value = data && data.empresa ? String(data.empresa) : '';
-      fields.cuil.value = data && data.cuil ? String(data.cuil) : '';
-      fields.importe.value = data && data.importe ? String(data.importe) : '';
-
-      const missing = ['empresa', 'cuil', 'importe'].filter((k) => !data || !data[k]);
-      if (missing.length === 3) {
-        setStatus('No se pudo identificar ningún dato. Completá los campos a mano.', 'warn');
-      } else if (missing.length > 0) {
-        setStatus('Extracción parcial — revisá los campos vacíos.', 'warn');
-      } else {
-        setStatus('Datos extraídos. Revisalos contra la factura antes de usarlos.', 'ok');
-      }
-    } catch (err) {
-      console.error(err);
-      const msg = copyForError(err && err.code);
-      if (msg) setStatus(msg, 'error');
-      else setStatus('');
-    } finally {
-      setFieldsDisabled(false);
-    }
-  }
-
-  fileInput.addEventListener('change', async (e) => {
-    const file = e.target.files && e.target.files[0];
-    if (!file) return;
-
-    fileNameEl.textContent = file.name;
-    resetFields();
-    placeholder.hidden = true;
-    retryBtn.hidden = true;
-    currentImageBlob = null;
-
-    try {
-      if (file.type.startsWith('image/')) {
-        await showImagePreview(file);
-        currentImageBlob = file;
-      } else if (file.type === 'application/pdf') {
-        currentImageBlob = await showPdfPreview(file);
-      } else {
-        placeholder.hidden = false;
-        placeholder.textContent = 'Formato no soportado. Subí una imagen (JPG, PNG, WebP, GIF) o un PDF.';
-        imgEl.hidden = true;
-        canvasEl.hidden = true;
-        return;
-      }
-    } catch (err) {
-      console.error(err);
-      placeholder.hidden = false;
-      placeholder.textContent = 'No se pudo leer el archivo. Probá con otro.';
-      imgEl.hidden = true;
-      canvasEl.hidden = true;
-      return;
-    }
-
-    retryBtn.hidden = false;
-    extractData(false);
-  });
-
-  retryBtn.addEventListener('click', () => extractData(true));
-</script>
 </body>
 </html>
