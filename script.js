@@ -94,10 +94,18 @@
             status.dataset.state = "ok";
             status.textContent = "Gracias, recibimos tu consulta. Te vamos a responder a la brevedad.";
             form.reset();
-          } else {
-            status.dataset.state = "error";
-            status.textContent = "No pudimos enviar el formulario. Probá de nuevo o escribinos por WhatsApp.";
+            return;
           }
+          // Formspree explica el motivo del rechazo en la respuesta (JSON).
+          // Lo dejamos en la consola del navegador (F12) para poder diagnosticarlo.
+          return response.json().catch(function () { return {}; }).then(function (data) {
+            var detail = (data && data.errors && data.errors.length)
+              ? data.errors.map(function (e) { return e.message; }).join(" ")
+              : (data && data.error) || ("HTTP " + response.status);
+            console.error("Formspree rechazó el envío:", response.status, detail, data);
+            status.dataset.state = "error";
+            status.textContent = "No pudimos enviar el formulario (" + detail + "). Probá de nuevo o escribinos por WhatsApp.";
+          });
         })
         .catch(function () {
           status.dataset.state = "error";
