@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preconnect" href="https://challenges.cloudflare.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
@@ -283,8 +284,11 @@
         </dl>
       </div>
 
-      <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/mzebygzz" method="POST" novalidate>
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <!-- El envío lo hace script.js hacia Google Apps Script (ver FORM_ENDPOINT en script.js) -->
         <input type="hidden" name="_subject" value="Nueva consulta desde la web">
+        <!-- Trampa anti-spam: campo invisible que solo completan los robots. No borrar. -->
+        <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="field-row">
           <div class="field">
@@ -309,6 +313,14 @@
         <div class="field">
           <label for="mensaje">Mensaje</label>
           <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+        </div>
+
+        <!-- CAPTCHA (Cloudflare Turnstile, gratis).
+             TODO-EDITAR: reemplazá data-sitekey por tu "Site Key" de Cloudflare.
+             La clave que viene puesta es la de PRUEBA de Cloudflare: siempre aprueba
+             y muestra el aviso "Testing only". Cambiala antes de publicar. -->
+        <div class="captcha">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAGVvmj3s8gPTUtCV" data-language="es" data-theme="light"></div>
         </div>
 
         <button type="submit" class="btn btn-primary btn-block">Enviar consulta</button>
@@ -340,6 +352,7 @@
   </div>
 </footer>
 
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="script.js"></script>
 </body>
 </html>

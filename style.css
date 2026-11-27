@@ -50,6 +50,7 @@ p { margin: 0 0 1em; }
 
 .wrap { width: min(1240px, 100% - 2 * max(5vw, 20px)); margin-inline: auto; }
 
+.hp-field { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .skip-link {
   position: absolute; left: 16px; top: -60px; z-index: 100;
@@ -269,6 +270,7 @@ p { margin: 0 0 1em; }
 }
 .field textarea { resize: vertical; min-height: 110px; }
 .field input:focus, .field textarea:focus { outline: none; border-bottom-color: var(--brass-dark); box-shadow: 0 1px 0 var(--brass-dark); }
+.captcha { margin: 4px 0 18px; min-height: 65px; }
 .contact-form .btn { margin-top: 8px; }
 .form-status { margin: 16px 0 0; font-size: 14px; min-height: 1.4em; }
 .form-status[data-state="ok"] { color: var(--ok); }

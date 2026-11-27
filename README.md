@@ -12,15 +12,46 @@ Buscá `TODO-EDITAR` en `index.html` y `script.js` (Ctrl+F / Cmd+F) para encontr
 - Estadísticas de ejemplo (`[XX]`) en "Sobre la empresa".
 - Testimonios: son de ejemplo, reemplazalos por comentarios reales de tus consorcios en cuanto los tengas.
 
-## 2. Activar el formulario de contacto
+## 2. Activar el formulario de contacto (Google Apps Script, gratis)
 
-GitHub Pages solo sirve archivos estáticos: no ejecuta código de servidor, así que el `<form>` no puede procesar el envío por sí solo. La forma más simple de resolverlo sin backend propio:
+GitHub Pages solo sirve archivos estáticos: no puede enviar mails. El formulario manda los datos a un
+script propio en Google Apps Script, que envía el mail desde tu cuenta de Gmail (sin servicios de
+terceros, hasta 100 destinatarios por día con una cuenta de Gmail común).
 
-1. Creá una cuenta gratis en [formspree.io](https://formspree.io) (o [web3forms.com](https://web3forms.com), [getform.io](https://getform.io)).
-2. Generá un formulario nuevo y copiá el endpoint que te dan (algo como `https://formspree.io/f/abc12345`).
-3. Pegalo en `script.js`, en la constante `FORM_ENDPOINT`, reemplazando `https://formspree.io/f/TU_ID_DE_FORMULARIO`.
+1. Entrá a https://script.google.com con la cuenta de Gmail donde querés recibir las consultas → **Nuevo proyecto**.
+2. Borrá el contenido y pegá el código del archivo `google-apps-script.gs` (viene junto con este sitio).
+   Revisá la constante `DESTINO` (el mail donde llegan las consultas).
+3. **Implementar → Nueva implementación** → engranaje → **Aplicación web**.
+   - Ejecutar como: **Yo**
+   - Quién tiene acceso: **Cualquier persona**
+4. **Implementar**, autorizá los permisos (si aparece "app no verificada": *Configuración avanzada → Ir a…*;
+   es normal porque el script es tuyo).
+5. Copiá la URL que termina en `/exec` y pegala en `script.js`, en la constante `FORM_ENDPOINT`
+   (reemplazando `https://script.google.com/macros/s/PEGAR_ID_AQUI/exec`).
+6. Subí los cambios y hacé un envío de prueba.
 
-Hasta que hagas ese paso, el formulario va a avisar en pantalla que falta configurarlo (no falla en silencio). El botón de WhatsApp funciona directo, sin ningún servicio adicional.
+Si más adelante modificás el script: **Implementar → Gestionar implementaciones → ✏️ → Versión: nueva → Implementar**.
+Así la URL `/exec` no cambia y no hay que tocar la página.
+
+Si algo falla, el mensaje debajo del botón muestra el motivo, y también queda en la consola del navegador (F12).
+
+### 2.b CAPTCHA (Cloudflare Turnstile, gratis)
+
+Antes de enviar, el visitante tiene que pasar una verificación de seguridad. El script de Google la
+valida con Cloudflare y, si no es válida, no manda el mail.
+
+1. Entrá a tu panel de Cloudflare → **Turnstile** → **Add widget** (o *Agregar widget*).
+2. Nombre: `Formulario web`. Hostname: `solucionesph.com.ar`. Modo: **Managed**.
+3. Cloudflare te da dos claves:
+   - **Site Key** → pegala en `index.html`, en `data-sitekey="..."` (reemplazando `1x00000000000000000000AA`).
+   - **Secret Key** → pegala en el script de Google, en `TURNSTILE_SECRET` (reemplazando `1x0000000000000000000000000000000AA`),
+     y volvé a implementar (Gestionar implementaciones → ✏️ → Versión: nueva).
+
+Las claves que vienen puestas son las de **prueba** de Cloudflare: el formulario funciona, pero el captcha
+siempre aprueba y muestra "Testing only". Sirven para probar; reemplazalas antes de dejarlo publicado.
+
+Nota: al autorizar el script de Google te va a pedir también permiso para "conectarse a un servicio
+externo" — es para consultar a Cloudflare si el captcha es válido.
 
 ## 3. Publicar en GitHub Pages
 
@@ -72,7 +103,7 @@ Las fotos de las noticias siguen estando en `img/`.
 ```
 index.html  → contenido y estructura de las secciones
 style.css   → paleta, tipografía y layout responsive
-script.js   → menú móvil, encabezado al hacer scroll, animaciones, año del footer, formulario
+script.js   → menú móvil, encabezado al hacer scroll, animaciones, año del footer, envío del formulario
 img/        → fotos de las noticias
 README.md   → este archivo
 ```
