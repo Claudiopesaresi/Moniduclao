@@ -65,7 +65,8 @@
   // TODO-EDITAR: pegá acá la URL de tu aplicación web de Google Apps Script
   // (Implementar → Nueva implementación → Aplicación web). Termina en /exec.
   // var FORM_ENDPOINT = "https://script.google.com/macros/s/PEGAR_ID_AQUI/exec";
-  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwYuQCZRqCI0rpxRPKW5V-21nZeauDQoooM5V4-07hcRVIwtXTlsHO4vDq1W6FN-NwnGg/exec"; 
+  // var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwYuQCZRqCI0rpxRPKW5V-21nZeauDQoooM5V4-07hcRVIwtXTlsHO4vDq1W6FN-NwnGg/exec"; 
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbwYuQCZRqCI0rpxRPKW5V-21nZeauDQoooM5V4-07hcRVIwtXTlsHO4vDq1W6FN-NwnGg/exec";
 
   var form = document.getElementById("contactForm");
   var status = document.getElementById("formStatus");
